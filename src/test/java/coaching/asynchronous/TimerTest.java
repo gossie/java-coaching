@@ -10,6 +10,7 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
+import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -50,8 +51,7 @@ class TimerTest {
     void testTimer_waiting() throws Exception {
         var timer = new Timer(Duration.of(10, ChronoUnit.MILLIS));
         assertFalse(timer.hasReached());
-
-        Awaitility.await().until(timer::hasReached);
+        await().until(timer::hasReached);
     }
 
 }
